@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
 // import './clena-code/04-homework.ts'
 // import './clena-code/05-dry.ts'
-import './clena-code/06-classes-a.ts'
+import './clena-code/06-classes-b.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
