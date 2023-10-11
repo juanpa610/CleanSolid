@@ -5,20 +5,23 @@
     type Gender = 'M'|'F';
 
     interface PersonProps {
-        name     : string;
-        gender   : Gender;
-        birthdate: Date;
+        birthdate : Date;
+        firstName : string;
+        gender    : Gender;
+        lastName  : string;
     }
 
     class Person {
-        public name     : string;
-        public gender   : Gender;
-        public birthdate: Date;
+        public birthdate : Date;
+        public firstName : string;
+        public gender    : Gender;
+        public lastName  : string;
 
-        constructor({ name, gender, birthdate }: PersonProps ){
-            this.name = name;
-            this.gender = gender;
+        constructor({ firstName, lastName, gender, birthdate }: PersonProps ){
             this.birthdate = birthdate;
+            this.firstName = firstName;
+            this.gender = gender;
+            this.lastName = lastName;
         }
     }
 
@@ -29,13 +32,13 @@
     }
     class User {
 
+        private lastAccess : Date;
         public email       : string;
         public role        : string;
-        private lastAccess : Date;
 
         constructor({ email, role }: UserProps ){
-            this.lastAccess = new Date();
             this.email = email;
+            this.lastAccess = new Date();
             this.role = role;
         }
 
@@ -51,12 +54,12 @@
     }
 
     class Settings {
-        public workingDirectory: string; 
         public lastFolderOpen  : string; 
+        public workingDirectory: string; 
 
         constructor({ workingDirectory, lastFolderOpen }: SettingsProps ){
-            this.workingDirectory = workingDirectory;
             this.lastFolderOpen = lastFolderOpen;
+            this.workingDirectory = workingDirectory;
         }
     }
     
@@ -65,9 +68,10 @@
     interface UserSettingsProps {
         birthdate       : Date;
         email           : string;
+        firstName       : string;
         gender          : Gender;
         lastFolderOpen  : string;
-        name            : string;
+        lastName        : string;
         role            : string;
         workingDirectory: string;
     }
@@ -83,11 +87,11 @@
         public settings: Settings;
 
         constructor({ 
-            name, gender, birthdate,
+            firstName, lastName, gender, birthdate,
             email, role,
             workingDirectory, lastFolderOpen,
         }: UserSettingsProps) {
-            this.person = new Person({ name, gender, birthdate });
+            this.person = new Person({ firstName, lastName, gender, birthdate });
             this.user = new User({ email, role });
             this.settings = new Settings({ workingDirectory, lastFolderOpen })
         }
@@ -98,12 +102,16 @@
     const userSettings = new UserSettings({
         birthdate: new Date('1985-10-21'),
         email: 'fernando@google.com',
-        gender: 'M',
+        firstName: 'Fernando',
+        gender: 'M', 
         lastFolderOpen: '/home',
-        name: 'Fernando',
+        lastName: 'Fernando',
         role: 'Admin',
         workingDirectory: '/usr/home'
     });
+
+    //Asi es como se genera un bajo Acoplamiento,
+    //ya que no se generar extends de classes y tampoco se genera un efecto domino 
 
     console.log({ userSettings, credentials: userSettings.user.checkCredentials() });
     
