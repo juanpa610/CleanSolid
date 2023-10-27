@@ -6,7 +6,8 @@ import { setupCounter } from './counter.ts'
 // import './clena-code/05-dry.ts'
 // import './clena-code/06-classes-c.ts'
 // import './clena-code/07-tarea-a.ts'
-import './solid/01-srp.ts'
+// import './solid/01-srp.ts'
+import './solid/02-open-close-a.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
