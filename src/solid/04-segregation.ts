@@ -1,45 +1,39 @@
 interface Bird {
-    fly(): void;
     eat(): void;
+}
+
+interface FlyingBird {
+    fly(): void;
+}
+
+interface RuningBird {
     run(): void;
+}
+
+interface SwimmergBird {
     swing(): void;
 }
 
-class Tucan implements Bird {
+class Tucan implements Bird, FlyingBird  {
     public fly() {}
     public eat() {}
-    public run() {}
-    public swing() {
-        throw new Error("This bird not swing");
-    }
 }
 
-
-class Hummingbird implements Bird {
+class Hummingbird implements Bird, FlyingBird{
     public fly() {}
     public eat() {}
-    public run() {}
-    public swing() {
-        throw new Error("This bird not swing");
-    }
 }
 
-class Ostrich implements Bird {
-    public fly(){
-        throw new Error('This bird not fly');
-    }
+class Ostrich implements Bird, RuningBird {
     public eat() {}
     public run() {}
-    public swing() {
-        throw new Error("This bird not swing");
-    }
 }
 
-class Penguin implements Bird {
-    public fly(){
-        throw new Error('This bird not fly');
-    }
+class Penguin implements Bird, SwimmergBird {
     public eat() {}
-    public run() {}
     public swing() {}
 }
+
+// De esta manera estamos segregando las interfaces para el bird de tal manera que 
+// si en un futuro tuvieramos que hacen un cambio en la interface de FlyingBird
+// Solo se veran afectadas las classes que implementan esta interface.
