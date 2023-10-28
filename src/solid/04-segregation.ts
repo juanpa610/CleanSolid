@@ -3,7 +3,7 @@ interface Bird {
 }
 
 interface FlyingBird {
-    fly(): void;
+    fly(): number;
 }
 
 interface RuningBird {
@@ -15,12 +15,12 @@ interface SwimmergBird {
 }
 
 class Tucan implements Bird, FlyingBird  {
-    public fly() {}
+    public fly() { return 100}
     public eat() {}
 }
 
 class Hummingbird implements Bird, FlyingBird{
-    public fly() {}
+    public fly() { return 20}
     public eat() {}
 }
 
@@ -37,3 +37,6 @@ class Penguin implements Bird, SwimmergBird {
 // De esta manera estamos segregando las interfaces para el bird de tal manera que 
 // si en un futuro tuvieramos que hacen un cambio en la interface de FlyingBird
 // Solo se veran afectadas las classes que implementan esta interface.
+
+// Y asi es como se ve el Principio de segregacion de interface dando resultados buenos, en este ejemplo
+// se pudo evidenciar que no tuvimos que modificar las otras classes implementan a Bird 
