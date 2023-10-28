@@ -40,3 +40,5 @@ class Penguin implements Bird, SwimmergBird {
 
 // Y asi es como se ve el Principio de segregacion de interface dando resultados buenos, en este ejemplo
 // se pudo evidenciar que no tuvimos que modificar las otras classes implementan a Bird 
+
+// Las classes no debe de verse obligadas a utilizar metodos que no utilizan o que no son propios de esta 
