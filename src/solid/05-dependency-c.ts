@@ -1,8 +1,14 @@
-export class LocalDataBaseService {
+import { Post } from "./05-dependency-b";
+import localPost from "./local-database.json";
 
-    constructor() {}
+export abstract class PostProvider {
+    abstract getPost(): Promise<Post[]>
+}
 
-    async getFakePosts() {
+
+export class LocalDataBaseService implements PostProvider {
+
+    async getPost() {
         return [
             {
                 'userId': 1,
@@ -19,3 +25,27 @@ export class LocalDataBaseService {
     }
 
 }
+
+export class JsonDataBaseService implements PostProvider{
+    async getPost(){
+        return localPost;
+    }
+}
+
+// asi es como estamos aplicando el principio de substituion liskov que lo que dice es que:
+// nosotros podriamos reemplazar cualquier classe, por unas classe que implemente o extiena de 
+// otra classe 
+
+
+
+export class WeaApiPostServoice implements PostProvider{
+
+    async getPost(){
+        const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+        const result: Post[] = await res.json();
+        return result;
+    }
+}
+
+// El codigo que implementa lógica de alto nivel 
+// no debe depender de código que implementa los detalles a bajo nivel
